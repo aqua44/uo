@@ -12,14 +12,14 @@ module.exports = {
     .setTitle(`Help`)  
     .setColor("#2f3136")
 
-      .addField(':stopwatch: Uptime', `${ms(this.client.uptime)}`, true)
-      .addField('<a:statusping:1008817677499912376> WebSocket Ping', `${this.client.ws.ping}ms`, true)
+      .addField(':stopwatch: Uptime', `${pretty(client.uptime)}`, true)
+      .addField('<a:statusping:1008817677499912376> WebSocket Ping', `${client.ws.ping}ms`, true)
       .addField('<:ram:1008822055812210918> Memory', `${(process.memoryUsage().rss / 1024 / 1024).toFixed(2)} MB RSS\n${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB Heap`, true)
       .addField('<:developer:1008449049717911654> Developers', `<@755566952449310842>`, true)
-      .addField('<:server:1008816761493262420> Guild Count', `${this.client.guilds.cache.size} guilds`, true)
-      .addField(`<:user:1008816981929107457> User Count`, `${this.client.users.cache.size} users`, true)
+      .addField('<:server:1008816761493262420> Guild Count', `${client.guilds.cache.size} guilds`, true)
+      .addField(`<:user:1008816981929107457> User Count`, `${client.users.cache.size} users`, true)
       .addField('<:node:994985829913067571> Node', `${process.version} on ${process.platform} ${process.arch}`, true)
-      .addField('<:channel:1008818899137089596> Channel Count', `${this.client.channels.cache.size}`, true)
+      .addField('<:channel:1008818899137089596> Channel Count', `${client.channels.cache.size}`, true)
       .setTimestamp()
       .setColor("#3498DB");
 
