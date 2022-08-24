@@ -1,6 +1,6 @@
 const { MessageEmbed, MessageButton, MessageActionRow, Client } = require("discord.js");
 const moment = require("moment");
-const ms = require('ms');
+const pretty = require('pretty-ms');
 const chalk = require('chalk');
 
 module.exports = {
