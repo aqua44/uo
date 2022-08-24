@@ -28,6 +28,6 @@ module.exports = {
           .setURL(`https://discord.gg/UybeVq66hF`)
          )
 
-    interaction.followUp({ embeds: [embed], components: [row] });
+    interaction.reply({ embeds: [embed], components: [row] });
   }
 };
