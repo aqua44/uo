@@ -11,7 +11,7 @@ module.exports = {
      * @param {String[]} args
      */
     run: async (client, interaction, args) => {
-        if (!message.author.id === process.env.OWNERID) return;
+        if (!interaction.author.id === process.env.OWNERID) return;
         const code = args.join(' ');
         if (!code) return interaction.reply('Please provide some code to evaluated!');
 
