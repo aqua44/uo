@@ -1,23 +1,22 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const guildData = new mongoose.Schema({
-    guildID: String,
-    tickets: Array,
-    ticketCounter: {
-        type: Number,
-        default: 0
-    },
-    usersBlacklisted: Array,
-    transcriptChannel: String,
-    mentionStaff: String,
-    staffRole: String,
-    maxTickets: {
-        type: Number,
-        default: 1
-    }
-})
+const dataTicket = new mongoose.Schema({
+	guildID: String,
+    ownerID: String,
+    channelName: String,
+    channelID: String,
+    ticketPanel: String,
+    parentID: String,
+    dateCreated: Date,
+    isClosed: Boolean,
+    isClaimed: Boolean,
+    staffClaimed: String,
+    staffRoles: Array,
+    usersInTicket: Array,
+});
 
-module.exports = mongoose.model('guildData', guildData, "guildData")
+module.exports = mongoose.model('dataTicket', dataTicket, 'dataTicket');
+
 
 //===========================================================\\
 //===================| Coded By Uo#1428 |====================\\
