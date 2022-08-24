@@ -1,17 +1,17 @@
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { Client, CommandInteraction, MessageEmbed } = require("discord.js");
 const { isTicket } = require("../../controllers/ticketChecks");
 
 module.exports = {
-	name: "add",
-	description: "Add a user to a ticket channel.",
+	name: "giveto",
+	description: "Give a ticket to another staff member.",
 	type: 'CHAT_INPUT',
 	options: [
 		{
-			name: "user",
-			description: "The user to add to the ticket.",
-			type: "USER",
+			name: 'user',
+			description: 'The staff to give the ticket to.',
+			type: 'USER',
 			required: true
-		}	
+		}
 	],
 	/**
 	 *
@@ -30,46 +30,38 @@ module.exports = {
 					.setColor("RED")
 			], ephemeral: true});
 		}
-		if (ticketData.usersInTicket.includes(user.id)) {
+
+		if (!ticketData.isClaimed) {
 			return interaction.reply({embeds: [
 				new MessageEmbed()
 					.setTitle("Ticket System \❌")
-					.setDescription(client.languages.__mf("commands.add.user_already_in_ticket", {
-						user_mention: `<@${user.id}>`,
-						user_tag: user.tag
-					}))
+					.setDescription(client.languages.__("commands.giveto.ticket_not_claimed"))
 					.setColor("RED")
 			], ephemeral: true});
 		}
 
-		try {
-			await interaction.channel.permissionOverwrites.edit(user.id, {
-				VIEW_CHANNEL: true,
-				SEND_MESSAGES: true,
-				ADD_REACTIONS: true,
-				ATTACH_FILES: true,
-				EMBED_LINKS: true
-			});
-		} catch (error) {
+		if (ticketData.staffClaimed !== interaction.user.id) {
 			return interaction.reply({embeds: [
 				new MessageEmbed()
 					.setTitle("Ticket System \❌")
-					.setDescription("An error occured while adding the user to the ticket.\n" + "```" + error + "```")
+					.setDescription(client.languages.__("commands.giveto.ticket_not_claimed_by_you"))
 					.setColor("RED")
 			], ephemeral: true});
 		}
 
-		ticketData.usersInTicket.push(user.id);
-		ticketData.save();
+		interaction.channel.permissionOverwrites.edit(user.id, {
+			VIEW_CHANNEL: true,
+			MANAGE_CHANNELS: true,
+		});
 
-		return interaction.reply({embeds: [
+		interaction.reply({embeds: [
 			new MessageEmbed()
 				.setTitle("Ticket System \✅")
-				.setDescription(client.languages.__mf("commands.add.success", {
+				.setDescription(client.languages.__mf("commands.giveto.ticket_given_to", {
 					user_mention: `<@${user.id}>`,
-					user_tag: user.tag
+					author_mention: `<@${interaction.user.id}>`
 				}))
 				.setColor("GREEN")
-		]});
+		]})
 	},
 };

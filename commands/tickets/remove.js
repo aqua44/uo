@@ -2,13 +2,13 @@ const { CommandInteraction, MessageEmbed } = require("discord.js");
 const { isTicket } = require("../../controllers/ticketChecks");
 
 module.exports = {
-	name: "add",
-	description: "Add a user to a ticket channel.",
+	name: "remove",
+	description: "Remove a user from a ticket channel.",
 	type: 'CHAT_INPUT',
 	options: [
 		{
 			name: "user",
-			description: "The user to add to the ticket.",
+			description: "The user to remove from the ticket.",
 			type: "USER",
 			required: true
 		}	
@@ -30,11 +30,11 @@ module.exports = {
 					.setColor("RED")
 			], ephemeral: true});
 		}
-		if (ticketData.usersInTicket.includes(user.id)) {
+		if (!ticketData.usersInTicket.includes(user.id)) {
 			return interaction.reply({embeds: [
 				new MessageEmbed()
 					.setTitle("Ticket System \❌")
-					.setDescription(client.languages.__mf("commands.add.user_already_in_ticket", {
+					.setDescription(client.languages.__mf("commands.remove.user_not_in_ticket", {
 						user_mention: `<@${user.id}>`,
 						user_tag: user.tag
 					}))
@@ -43,29 +43,23 @@ module.exports = {
 		}
 
 		try {
-			await interaction.channel.permissionOverwrites.edit(user.id, {
-				VIEW_CHANNEL: true,
-				SEND_MESSAGES: true,
-				ADD_REACTIONS: true,
-				ATTACH_FILES: true,
-				EMBED_LINKS: true
-			});
-		} catch (error) {
+			await interaction.channel.permissionOverwrites.delete(user.id);
+		} catch {
 			return interaction.reply({embeds: [
 				new MessageEmbed()
 					.setTitle("Ticket System \❌")
-					.setDescription("An error occured while adding the user to the ticket.\n" + "```" + error + "```")
+					.setDescription("An error occured while removing the user from the ticket." + "```" + error + "```")
 					.setColor("RED")
 			], ephemeral: true});
 		}
 
-		ticketData.usersInTicket.push(user.id);
-		ticketData.save();
+		ticketData.usersInTicket.splice(ticketData.usersInTicket.indexOf(user.id), 1);
+		await ticketData.save();
 
 		return interaction.reply({embeds: [
 			new MessageEmbed()
 				.setTitle("Ticket System \✅")
-				.setDescription(client.languages.__mf("commands.add.success", {
+				.setDescription(client.languages.__mf("commands.remove.user_removed", {
 					user_mention: `<@${user.id}>`,
 					user_tag: user.tag
 				}))
