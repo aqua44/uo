@@ -3,7 +3,7 @@ const pretty = require('pretty-ms');
 
 module.exports = {
     name: 'uptime',
-    description: "Returns information about Exxyll's Uptime",
+    description: "Returns Maily's Uptime",
    
     /**
      * @param {Client} client
@@ -16,6 +16,6 @@ module.exports = {
             .setDescription(`\`\`\`yml\nStatus : Online\nUptime : ${pretty(client.uptime)}\n\`\`\``)
             .setColor("#800080");
 
-        interaction.followUp({ embeds: [embed] });
+        interaction.reply({ embeds: [embed] });
     },
 };
