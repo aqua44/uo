@@ -1,6 +1,6 @@
 {
-    "TOKEN": "",
-    "GUILD-ID": "925718661849817108",
+    "TOKEN": "MTAxMjA2Nzg3MDcwMTc4MTA0Mg.G-SiHH.IT5bkzAavqDwxMIWlLIDR9G6CVyjLSmA3P3nns",
+    "GUILD-ID": "1011730994677686312",
     "MONGO_URI": "mongodb+srv://tikit:tikit@cluster0.3u2blta.mongodb.net/?retryWrites=true&w=majority",
     "LANGUAGE": "en"
 }
