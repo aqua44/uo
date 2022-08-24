@@ -1,5 +1,4 @@
 const { MessageEmbed, MessageButton, MessageActionRow } = require("discord.js");
-const moment = require("moment");
 
 module.exports = {
       name: "help",
