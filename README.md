@@ -1,4 +1,4 @@
-<h1>Tikit</h1>
+<h1>Tikety</h1>
 
 ## Video of this code is [Here](https://youtu.be/gZl0kU0cKPA)
 # [ALL IN ONΞ™](https://tinyurl.com/3jvb65tv)
