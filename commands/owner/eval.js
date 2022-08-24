@@ -13,7 +13,7 @@ module.exports = {
     run: async (client, interaction, args) => {
         if (!message.author.id === process.env.OWNERID) return;
         const code = args.join(' ');
-        if (!code) return message.reply('Please provide some code to evaluated!');
+        if (!code) return interaction.reply('Please provide some code to evaluated!');
 
         try {
             const result = await eval(code);
@@ -29,7 +29,7 @@ module.exports = {
                         .setColor('#00FF00')
                         .setTitle(`✔️ | 200 : Success`)
                         .setDescription(`Results\n\`\`\`yml\n${output}\n\`\`\``)
-                        .setFooter(`Actioned by : ${message.author.tag}`),
+                        .setFooter(`Actioned by : ${interaction.author.tag}`),
                 ],
             });
         } catch (error) {
@@ -40,7 +40,7 @@ module.exports = {
                         .setTitle(`❌ | Evaluated Content too long to displayed`)
                         .setDescription(`Error Logs\n\`\`\`yml\n${error}\n\`\`\``)
                         .setColor('#FF0000')
-                        .setFooter(`Actioned by : ${message.author.tag}`),
+                        .setFooter(`Actioned by : ${interaction.author.tag}`),
                 ],
             });
         }
