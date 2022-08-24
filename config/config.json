@@ -1,1 +1,6 @@
-
+{
+    "TOKEN": "",
+    "GUILD-ID": "925718661849817108",
+    "MONGO_URI": "mongodb+srv://tikit:tikit@cluster0.3u2blta.mongodb.net/?retryWrites=true&w=majority",
+    "LANGUAGE": "en"
+}
