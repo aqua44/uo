@@ -116,7 +116,7 @@ if (!interaction.isButton() || !interaction.customId.startsWith('sug-')) return;
       btnUp.setLabel(`${sugg.votes.up}`);
       btnDown.setLabel(`${sugg.votes.down}`);
   
-      await sugg.save();
+       sugg.save();
       message.edit({
           components: [new MessageActionRow({
               components: [btnUp, btnDown]
