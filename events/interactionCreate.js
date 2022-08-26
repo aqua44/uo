@@ -5,7 +5,11 @@
 //=============| ΛLL IN ONΞ™ | Development </> |=============\\
 //=============| https://discord.gg/pXRT2FusPb |=============\\
 //===========================================================\\ 
-
+const {
+    MessageActionRow
+} = require("discord.js");
+const suggestions = require("../models/suggestion");
+const server = require("../models/config");
 const { error } = require("../controllers/logger");
 const { havePerms } = require("../controllers/ticketChecks");
 const client = require("../index");
@@ -38,6 +42,92 @@ client.on("interactionCreate", async (interaction) => {
     }
 });
 
+//===========================================================\\
+
+if (!interaction.isButton() || !interaction.customId.startsWith('sug-')) return;
+      await interaction.deferReply({
+          ephemeral: true
+      });
+  
+      let data = await server.findById(interaction.guildId);
+  
+      if (!data || !data.channel.suggestions)
+          return interaction.reply({
+              content: `The suggestions channel is not configured`,
+          });
+  
+      const id = interaction.customId.replace('sug-', '').substring(0, 8);
+      const sugg = await suggestions.findById(id);
+  
+      if (!sugg)
+          return interaction.reply({
+              content: `the suggestion has been deleted from the database`,
+              ephemeral: true
+          });
+  
+      const channel = (await interaction.guild.channels.fetch(data.channel.suggestions).catch(() => null));
+  
+      if (!channel)
+          return interaction.reply({
+              content: `The suggestions channel was not found`,
+              ephemeral: true
+          });
+  
+      const message = (await channel.messages.fetch(sugg.messageId).catch(() => null));
+  
+      if (!message)
+          return interaction.reply({
+              content: `I cant find this suggestion maybe it has been deleted`,
+              ephemeral: true
+          });
+          
+      const action = interaction.customId.replace(`sug-${id}-`, '') == 'yes' ? 'upvote' : 'downvote';
+      const find = sugg.answers.find(x => x.id == interaction.user.id);
+  
+      if (find) {
+          if (action == find.type)
+              return interaction.reply({
+                  content: `You have already voted this suggestion`,
+                  ephemeral: true
+              });
+  
+          sugg.answers = sugg.answers.map(item => {
+              if (item.id == interaction.user.id) return {
+                  ...item,
+                  type: action
+              };
+              else return item;
+          });
+  
+          if (action == 'downvote') sugg.votes.up -= 1
+          else sugg.votes.down -= 1
+      } else
+          sugg.answers.push({
+              id: interaction.user.id,
+              type: action
+          });
+  
+      if (action == 'downvote') sugg.votes.down += 1;
+      else sugg.votes.up += 1;
+  
+      const btnUp = message.components[0].components[0];
+      const btnDown = message.components[0].components[1];
+  
+      btnUp.setLabel(`${sugg.votes.up}`);
+      btnDown.setLabel(`${sugg.votes.down}`);
+  
+      await sugg.save();
+      message.edit({
+          components: [new MessageActionRow({
+              components: [btnUp, btnDown]
+          })]
+      });
+  
+      return interaction.reply({
+          content: `Your vote has been counted`,
+          ephemeral: true
+      });
+});
 
 //===========================================================\\
 //===================| Coded By Uo#1428 |====================\\
