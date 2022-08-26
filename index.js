@@ -96,7 +96,7 @@ app.listen(port, () => debug(`Bot running on http://localhost:${port}`));
 })
 
 //===========================================================\\
-const pollSchema = require("./models/poll");
+const pollSchema = require("../module");
 const {
     ChartJSNodeCanvas,
     ChartConfiguration,
