@@ -1,9 +1,6 @@
 const { MessageAttachment, MessageEmbed } = require("discord.js");
 const pollSchema = require("../models/poll");
-const {
-    ChartJSNodeCanvas,
-    ChartConfiguration,
-} = require("chartjs-node-canvas");
+const { ChartJSNodeCanvas, ChartConfiguration } = require("chartjs-node-canvas");
 const client = require("../index");
 
 const width = 800;
