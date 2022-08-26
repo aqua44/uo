@@ -31,21 +31,21 @@ module.exports = {
             data.channel.suggestions = null;
             await data.save();
 
-            return interaction.followUp({
-                content: ` The suggestion system has been successfully disabled`
+            return interaction.reply({
+                content: `The suggestion system has been successfully disabled`
             });
         }
 
         if (channel.id == data.channel.suggestions)
-            return interaction.followUp({
-                content: ` This is already the suggestion channel`,
+            return interaction.reply({
+                content: `This is already the suggestion channel`,
             });
 
         data.channel.suggestions = channel.id;
         await data.save();
 
-        return interaction.followUp({
-            content: ` The suggestion channel has been successfully set up [ ${channel} ]`
+        return interaction.reply({
+            content: `The suggestion channel has been successfully set up [ ${channel} ]`
         });
     }
 };
