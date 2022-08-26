@@ -1,7 +1,8 @@
+const client = require("../index");
 const { MessageAttachment, MessageEmbed } = require("discord.js");
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const pollSchema = require("../models/poll");
 const { ChartJSNodeCanvas, ChartConfiguration } = require("chartjs-node-canvas");
-const client = require("../index");
 
 const width = 800;
 const height = 600;
