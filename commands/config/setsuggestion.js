@@ -31,20 +31,20 @@ module.exports = {
             data.channel.suggestions = null;
             await data.save();
 
-            return interaction.reply({
+            return interaction.deferReply({
                 content: `The suggestion system has been successfully disabled`
             });
         }
 
         if (channel.id == data.channel.suggestions)
-            return interaction.reply({
+            return interaction.deferReply({
                 content: `This is already the suggestion channel`,
             });
 
         data.channel.suggestions = channel.id;
         await data.save();
 
-        return interaction.reply({
+        return interaction.deferReply({
             content: `The suggestion channel has been successfully set up [ ${channel} ]`
         });
     }
