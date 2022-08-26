@@ -1,6 +1,5 @@
 const client = require("..");
 const pollSchema = require("../models/poll");
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const {
     ChartJSNodeCanvas,
     ChartConfiguration,
