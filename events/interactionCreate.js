@@ -73,7 +73,7 @@ if (!interaction.isButton() || !interaction.customId.startsWith('sug-')) return;
               ephemeral: true
           });
   
-      const message = (await channel.messages.fetch(sugg.messageId).catch(() => null));
+      const message = (channel.messages.fetch(sugg.messageId).catch(() => null));
   
       if (!message)
           return interaction.reply({
