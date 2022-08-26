@@ -65,7 +65,7 @@ if (!interaction.isButton() || !interaction.customId.startsWith('sug-')) return;
               ephemeral: true
           });
   
-      const channel = (await interaction.guild.channels.fetch(data.channel.suggestions).catch(() => null));
+      const channel = (interaction.guild.channels.fetch(data.channel.suggestions).catch(() => null));
   
       if (!channel)
           return interaction.reply({
