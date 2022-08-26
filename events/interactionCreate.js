@@ -42,11 +42,11 @@ client.on("interactionCreate", async (interaction) => {
         command.run(client, interaction, args);
     }
    if (!interaction.isButton() || !interaction.customId.startsWith('sug-')) return;
-       interaction.deferReply({
+      await interaction.deferReply({
           ephemeral: true
       });
   
-      let data = server.findById(interaction.guildId);
+      let data = await server.findById(interaction.guildId);
   
       if (!data || !data.channel.suggestions)
           return interaction.reply({
@@ -54,7 +54,7 @@ client.on("interactionCreate", async (interaction) => {
           });
   
       const id = interaction.customId.replace('sug-', '').substring(0, 8);
-      const sugg = suggestions.findById(id);
+      const sugg = await suggestions.findById(id);
   
       if (!sugg)
           return interaction.reply({
@@ -62,7 +62,7 @@ client.on("interactionCreate", async (interaction) => {
               ephemeral: true
           });
   
-      const channel = (interaction.guild.channels.fetch(data.channel.suggestions).catch(() => null));
+      const channel = (await interaction.guild.channels.fetch(data.channel.suggestions).catch(() => null));
   
       if (!channel)
           return interaction.reply({
@@ -70,7 +70,7 @@ client.on("interactionCreate", async (interaction) => {
               ephemeral: true
           });
   
-      const message = (channel.messages.fetch(sugg.messageId).catch(() => null));
+      const message = (await channel.messages.fetch(sugg.messageId).catch(() => null));
   
       if (!message)
           return interaction.reply({
@@ -113,7 +113,7 @@ client.on("interactionCreate", async (interaction) => {
       btnUp.setLabel(`${sugg.votes.up}`);
       btnDown.setLabel(`${sugg.votes.down}`);
   
-       sugg.save();
+      await sugg.save();
       message.edit({
           components: [new MessageActionRow({
               components: [btnUp, btnDown]
