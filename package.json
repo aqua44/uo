@@ -1,5 +1,5 @@
 {
-    "name": "tikit-uo1428",
+    "name": "ellia",
     "version": "1.0.0",
     "description": "a simple ticket system using button :)",
     "main": "index.js",
@@ -7,7 +7,7 @@
         "start": "node index.js"
     },
     "keywords": [],
-    "author": "Uo#1428",
+    "author": "Invalid",
     "license": "ISC",
     "engines": {
         "node": "16.x"
