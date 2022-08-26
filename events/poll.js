@@ -1,10 +1,9 @@
-const client = require("../index.js");
 const pollSchema = require("../models/poll");
 const {
     ChartJSNodeCanvas,
     ChartConfiguration,
 } = require("chartjs-node-canvas");
-const { MessageAttachment, MessageEmbed, } = require("discord.js");
+const { MessageAttachment, MessageEmbed, Client } = require("discord.js");
 
 const width = 800;
 const height = 600;
@@ -14,7 +13,7 @@ client.on("interactionCreate", async (interaction) => {
         .setTitle("❌ | 投票已被終止了")
         .setColor("RED")
         .setFooter({
-            iconURL: client.user.avatarURL({ dynamic: true }),
+            iconURL: this.client.user.avatarURL({ dynamic: true }),
             text: "Suggestion Bot ∙ 將 Discord 變成不一樣的 Discord",
         })
 
@@ -33,7 +32,7 @@ client.on("interactionCreate", async (interaction) => {
                             new MessageEmbed()
                                 .setTitle('❌ | 你不是投票的建立者')
                                 .setFooter({
-                                    iconURL: client.user.avatarURL({ dynamic: true }),
+                                    iconURL: this.client.user.avatarURL({ dynamic: true }),
                                     text: "Suggestion Bot ∙ 將 Discord 變成不一樣的 Discord",
                                 })
                                 .setColor("RED")
@@ -57,7 +56,7 @@ client.on("interactionCreate", async (interaction) => {
                         new MessageEmbed()
                             .setTitle(`✅ | 投票設定為${textPublic}`)
                             .setFooter({
-                                iconURL: client.user.avatarURL({ dynamic: true }),
+                                iconURL: this.client.user.avatarURL({ dynamic: true }),
                                 text: "Suggestion Bot ∙ 將 Discord 變成不一樣的 Discord",
                             })
                             .setColor("GREEN")
@@ -71,7 +70,7 @@ client.on("interactionCreate", async (interaction) => {
                         new MessageEmbed()
                             .setTitle('❌ | 你不是投票的建立者')
                             .setFooter({
-                                iconURL: client.user.avatarURL({ dynamic: true }),
+                                iconURL: this.client.user.avatarURL({ dynamic: true }),
                                 text: "Suggestion Bot ∙ 將 Discord 變成不一樣的 Discord",
                             })
                             .setColor("RED")
@@ -100,7 +99,7 @@ client.on("interactionCreate", async (interaction) => {
                             .setTitle("❌ | 投票已被終止")
                             .setColor("RED")
                             .setFooter({
-                                iconURL: client.user.avatarURL({ dynamic: true }),
+                                iconURL: this.client.user.avatarURL({ dynamic: true }),
                                 text: "Suggestion Bot ∙ 將 Discord 變成不一樣的 Discord",
                             })
                     ], ephemeral: true
@@ -269,7 +268,7 @@ client.on("interactionCreate", async (interaction) => {
                                 "只有發起人能查看結果，如果要公開可以點擊下面選單的 `公開投票結果`"
                             )
                             .setFooter({
-                                iconURL: client.user.avatarURL({ dynamic: true }),
+                                iconURL: this.client.user.avatarURL({ dynamic: true }),
                                 text: "Suggestion Bot ∙ 將 Discord 變成不一樣的 Discord",
                             })
                             .setColor("RED"),
