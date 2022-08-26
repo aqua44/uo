@@ -8,7 +8,7 @@ const { MessageAttachment, MessageEmbed, Client } = require("discord.js");
 const width = 800;
 const height = 600;
 
-client.on("interactionCreate", async (interaction) => {
+client.on("interactionCreate", async (interaction, client) => {
     const endedEmbed = new MessageEmbed()
         .setTitle("❌ | 投票已被終止了")
         .setColor("RED")
