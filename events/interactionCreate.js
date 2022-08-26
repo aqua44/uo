@@ -5,11 +5,7 @@
 //=============| ΛLL IN ONΞ™ | Development </> |=============\\
 //=============| https://discord.gg/pXRT2FusPb |=============\\
 //===========================================================\\ 
-const {
-    MessageActionRow
-} = require("discord.js");
-const suggestions = require("../models/suggestion");
-const server = require("../models/config");
+
 const { error } = require("../controllers/logger");
 const { havePerms } = require("../controllers/ticketChecks");
 const client = require("../index");
