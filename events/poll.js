@@ -1,4 +1,4 @@
-const { MessageAttachment, MessageEmbed } = require("discord.js");
+const { MessageAttachment, MessageEmbed } = require("discord.js")
 const pollSchema = require("../models/poll");
 const {
     ChartJSNodeCanvas,
