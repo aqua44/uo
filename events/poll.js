@@ -4,6 +4,7 @@ const {
     ChartConfiguration,
 } = require("chartjs-node-canvas");
 const { MessageAttachment, MessageEmbed, Client } = require("discord.js");
+const client = require("..");
 
 const width = 800;
 const height = 600;
