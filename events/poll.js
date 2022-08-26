@@ -1,15 +1,15 @@
+const { MessageAttachment, MessageEmbed } = require("discord.js");
 const pollSchema = require("../models/poll");
 const {
     ChartJSNodeCanvas,
     ChartConfiguration,
 } = require("chartjs-node-canvas");
-const { MessageAttachment, MessageEmbed, Client } = require("discord.js");
 const client = require("..");
 
 const width = 800;
 const height = 600;
 
-client.on("interactionCreate", async (interaction, client) => {
+client.on("interactionCreate", async (interaction) => {
     const endedEmbed = new MessageEmbed()
         .setTitle("❌ | 投票已被終止了")
         .setColor("RED")
