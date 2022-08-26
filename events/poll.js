@@ -3,7 +3,7 @@ const {
     ChartJSNodeCanvas,
     ChartConfiguration,
 } = require("chartjs-node-canvas");
-const { MessageAttachment, MessageEmbed } = require("discord.js");
+const { MessageAttachment, MessageEmbed, Client } = require("discord.js");
 
 const width = 800;
 const height = 600;
