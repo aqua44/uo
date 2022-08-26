@@ -49,7 +49,7 @@ if (!interaction.isButton() || !interaction.customId.startsWith('sug-')) return;
           ephemeral: true
       });
   
-      let data = await server.findById(interaction.guildId);
+      let data = server.findById(interaction.guildId);
   
       if (!data || !data.channel.suggestions)
           return interaction.reply({
