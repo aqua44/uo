@@ -127,7 +127,7 @@ if (!interaction.isButton() || !interaction.customId.startsWith('sug-')) return;
           content: `Your vote has been counted`,
           ephemeral: true
       });
-});
+})
 
 //===========================================================\\
 //===================| Coded By Uo#1428 |====================\\
