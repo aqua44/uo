@@ -29,7 +29,6 @@
         "moment": "^2.29.1",
         "chartjs-node-canvas": "^4.1.6",
         "chart.js-plugin-labels-dv": "^3.1.0",
-        "path": "^0.12.7",
-        "glob": "^7.2.0"
+        "path": "^0.12.7"
     }
 }
