@@ -57,7 +57,7 @@ if (!interaction.isButton() || !interaction.customId.startsWith('sug-')) return;
           });
   
       const id = interaction.customId.replace('sug-', '').substring(0, 8);
-      const sugg = await suggestions.findById(id);
+      const sugg = suggestions.findById(id);
   
       if (!sugg)
           return interaction.reply({
