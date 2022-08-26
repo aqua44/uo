@@ -1,4 +1,3 @@
-const client = require("../index");
 const { MessageAttachment, MessageEmbed } = require("discord.js");
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const pollSchema = require("../models/poll");
