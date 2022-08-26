@@ -23,7 +23,7 @@ module.exports = {
 
         if (!channel) {
             if (!data.channel.suggestions)
-                return interaction.followUp({
+                return interaction.reply({
                     content: `No configuration found, mention a channel to set the suggestion system`,
                     ephemeral: true
                 });
