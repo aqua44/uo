@@ -27,6 +27,7 @@
         "dotenv": "^16.0.1",
         "chalk": "^4.0.0",
         "moment": "^2.29.1",
-        "chartjs-node-canvas": "^4.1.6"
+        "chartjs-node-canvas": "^4.1.6",
+        "chart.js-plugin-labels-dv": "^3.1.0"
     }
 }
