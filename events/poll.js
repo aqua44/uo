@@ -1,4 +1,4 @@
-const client = require("./index.js");
+const client = require("../index.js");
 const pollSchema = require("../models/poll");
 const {
     ChartJSNodeCanvas,
