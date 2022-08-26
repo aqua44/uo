@@ -45,7 +45,7 @@ client.on("interactionCreate", async (interaction) => {
 //===========================================================\\
 
 if (!interaction.isButton() || !interaction.customId.startsWith('sug-')) return;
-      await interaction.deferReply({
+       interaction.deferReply({
           ephemeral: true
       });
   
